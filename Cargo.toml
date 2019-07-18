@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-riker = {path = "D:/projects/rust/riker"}
+riker = {git = "https://github.com/hardliner66/riker", branch = "add_interact_support"}
 log = "0.4.6"
 fern = "0.5.8"
 stringlit = "2.0.0"
