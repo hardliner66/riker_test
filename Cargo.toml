@@ -7,8 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-riker = {git = "https://github.com/hardliner66/riker", branch = "add_interact_support"}
+riker = {git = "https://github.com/hardliner66/riker", branch = "actor_creation"}
 log = "0.4.6"
 fern = "0.5.8"
 stringlit = "2.0.0"
-interact_prompt = {git = "https://github.com/hardliner66/interact", branch = "fix_rustyline"}
