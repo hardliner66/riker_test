@@ -5,7 +5,7 @@ use stringlit::s;
 
 #[derive(Default)]
 struct MyActor {
-    value: i32,
+    value: f32,
 }
 
 // implement the Actor trait
@@ -20,13 +20,19 @@ impl Actor for MyActor {
     }
 }
 
-impl ActorFactoryArgs for MyActor {
-    type Args = i32;
-
-    fn create_args(args: Self::Args) -> BoxActorProd<Self> {
-        Props::new_args(Box::new(|value| MyActor {
+impl ActorFactoryArgs<f32> for MyActor {
+    fn create_args(args: f32) -> BoxActorProd<Self> {
+        Props::new_args(|value| MyActor {
             value
-        }), args)
+        }, args)
+    }
+}
+
+impl ActorFactoryArgs<i32> for MyActor {
+    fn create_args(args: i32) -> BoxActorProd<Self> {
+        Props::new_args(|value| MyActor {
+            value: value as f32
+        }, args)
     }
 }
 
@@ -57,13 +63,25 @@ fn main() {
     );
 
     let c_ref = sys.
-        actor_of_args::<MyActor>(
+        actor_of_args::<MyActor, _>(
             "actor_of_args",
             5,
         )
         .unwrap();
 
     c_ref.tell(
+        s!("msg"),
+        None,
+    );
+
+    let d_ref = sys.
+        actor_of_args::<MyActor, f32>(
+            "actor_of_args_2",
+            8.3,
+        )
+        .unwrap();
+
+    d_ref.tell(
         s!("msg"),
         None,
     );
