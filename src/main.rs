@@ -75,7 +75,7 @@ fn main() {
     );
 
     let d_ref = sys.
-        actor_of_args::<MyActor, f32>(
+        actor_of_args::<MyActor, _>(
             "actor_of_args_2",
             8.3,
         )
